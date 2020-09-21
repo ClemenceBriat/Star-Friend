@@ -1,11 +1,11 @@
-class Menu extends Phaser.Scene{
+class Instructions extends Phaser.Scene{
     constructor() {
-        super("menuScene");
+        super("instructionsScene");
     }
 
     create() {
         // starts next scene
-        //this.scene.start("instructionsScene");
+        //this.scene.start("playScene");
 
         //menu display
         let menuConfig = {
@@ -26,10 +26,12 @@ class Menu extends Phaser.Scene{
         let centerY = game.config.height/2;
         let textSpacer = 64;
 
-        this.add.text(centerX, centerY - textSpacer, 'Star Friend', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY - textSpacer, 'Use WASD keys to move', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY, 'Use WASD keys to move', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY + textSpacer, 'Make some friends', menuConfig).setOrigin(0.5);
         menuConfig.backgroundColor = '#00FF00';
         menuConfig.color = '#000';
-        this.add.text(centerX, centerY + textSpacer, 'Press SPACE', menuConfig).setOrigin(0.5);
+        this.add.text(centerX, centerY + (textSpacer * 2), 'Press SPACE to Start', menuConfig).setOrigin(0.5);
 
         //define keys
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.keySPACE);
@@ -37,7 +39,7 @@ class Menu extends Phaser.Scene{
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.scene.start("instructionsScene");
+            this.scene.start("playScene");
         }
     }
 
