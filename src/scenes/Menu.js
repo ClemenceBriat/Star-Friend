@@ -32,12 +32,14 @@ class Menu extends Phaser.Scene{
         this.add.text(centerX, centerY + textSpacer, 'Press SPACE', menuConfig).setOrigin(0.5);
 
         //define keys
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.keySPACE);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        console.log("press space");
     }
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.start("instructionsScene");
+            console.log("space pressed");
         }
     }
 

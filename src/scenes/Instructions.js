@@ -34,7 +34,7 @@ class Instructions extends Phaser.Scene{
         this.add.text(centerX, centerY + (textSpacer * 2), 'Press SPACE to Start', menuConfig).setOrigin(0.5);
 
         //define keys
-        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.keySPACE);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
     }
 
     update() {
