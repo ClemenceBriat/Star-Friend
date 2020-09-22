@@ -5,7 +5,7 @@ class Instructions extends Phaser.Scene{
 
     create() {
         // starts next scene
-        //this.scene.start("playScene");
+        this.scene.start("playScene");
 
         //menu display
         let menuConfig = {

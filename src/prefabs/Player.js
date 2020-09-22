@@ -5,6 +5,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
         // add an object to scene, displayList, updateList
         scene.add.existing(this);
+        console.log("hello");
 
         //add player sfx
         //this.sfxMovement = scene.sound.add(movement sound);
@@ -12,25 +13,35 @@ class Player extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        //left/right movement
-        if(keyLEFT.isDown && this.x >= 47) {
-            this.x -= 2;
-        }
-        else if(keyRIGHT.isDown && this.x <= 578) {
+        //all direction movement
+        if(keyRIGHT.isDown) {
             this.x += 2;
         }
+        if(keyLEFT.isDown) {
+            this.x -= 2;
+        }
+        if(keyUP.isDown) {
+            this.y -= 2;
+        }
+        if(keyDOWN.isDown) {
+            this.y += 2;
+        }
 
+        /*
         // jump button
         if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.isJumping = true;
             //play sfx
             //this.sfxJump.play();
         }
-
+        */
+    
+        /*
         //if jumping, move up
         if(this.isJumping && this.y >= 108) {
             //idk
         }
+        */
 
     }
 

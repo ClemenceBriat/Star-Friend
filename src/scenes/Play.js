@@ -5,7 +5,7 @@ class Play extends Phaser.Scene{
 
     preload() {
         //load images and tile sprites
-        //this.load.image('rocket', './assets/rocket.png');
+        this.load.image('player', './assets/Player-star.png');
         //this.load.image('spaceship', './assets/spaceship.png');
         //this.load.image('starfield', './assets/starfield.png');
 
@@ -26,7 +26,7 @@ class Play extends Phaser.Scene{
         //this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
 
         // add rocket for p1
-        this.player = new Player(this, game.config.width/2, 431, 'rocket').setScale(0.5, 0.5).setOrigin(0, 0);
+        this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setScale(0.5, 0.5).setOrigin(0, 0);
 
         //add spaceships (x3)
         //this.ship01 = new Spaceship(this, game.config.width +192, 132, 'spaceship', 0, 30).setOrigin (0, 0);
@@ -34,7 +34,6 @@ class Play extends Phaser.Scene{
         //this.ship03 = new Spaceship(this, game.config.width, 260, 'spaceship', 0, 10).setOrigin (0, 0);
 
         // define keyboard keys
-        keyF = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
@@ -83,17 +82,17 @@ class Play extends Phaser.Scene{
         }
         // scroll starfield
         this.starfield.tilePositionX -= 4;
+        */
 
         if (!this.gameOver) {
             //update rocket
             this.player.update();
 
             //update spaceship
-            this.ship01.update();
-            this.ship02.update();
-            this.ship03.update();
+            //this.ship01.update();
+            //this.ship02.update();
+            //this.ship03.update();
         }
-        */
 
         //check collisions
         /*
