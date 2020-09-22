@@ -5,7 +5,6 @@ class Player extends Phaser.GameObjects.Sprite {
 
         // add an object to scene, displayList, updateList
         scene.add.existing(this);
-        console.log("hello");
 
         //add player sfx
         //this.sfxMovement = scene.sound.add(movement sound);

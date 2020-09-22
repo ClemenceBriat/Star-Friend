@@ -6,7 +6,7 @@ class Play extends Phaser.Scene{
     preload() {
         //load images and tile sprites
         this.load.image('player', './assets/Player-star.png');
-        //this.load.image('spaceship', './assets/spaceship.png');
+        this.load.image('friend', './assets/friend.png');
         this.load.image('starfield', './assets/sky.png');
 
         // load spritesheet
@@ -26,10 +26,10 @@ class Play extends Phaser.Scene{
         //this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
 
         // add rocket for p1
-        this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setScale(0.5, 0.5).setOrigin(0, 0);
+        this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setScale(0.7, 0.7).setOrigin(0, 0);
 
-        //add spaceships (x3)
-        //this.ship01 = new Spaceship(this, game.config.width +192, 132, 'spaceship', 0, 30).setOrigin (0, 0);
+        //add stars
+        this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
         //this.ship02 = new Spaceship(this, game.config.width +96, 196, 'spaceship', 0, 20).setOrigin (0, 0);
         //this.ship03 = new Spaceship(this, game.config.width, 260, 'spaceship', 0, 10).setOrigin (0, 0);
 
@@ -100,6 +100,8 @@ class Play extends Phaser.Scene{
             this.starfield.tilePositionX += 4;
         }
 
+        //scroll stars
+        
         
 
         if (!this.gameOver) {
@@ -107,7 +109,7 @@ class Play extends Phaser.Scene{
             this.player.update();
 
             //update spaceship
-            //this.ship01.update();
+            this.star01.update();
             //this.ship02.update();
             //this.ship03.update();
         }

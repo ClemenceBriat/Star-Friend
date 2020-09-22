@@ -11,7 +11,23 @@ class Star extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        
+        //scoll stars
+        if(keyDOWN.isDown)
+        {
+            this.y -= 2;
+        }
+        if(keyUP.isDown)
+        {
+            this.y += 2;
+        }
+        if(keyLEFT.isDown)
+        {
+            this.x += 2;
+        }
+        if(keyRIGHT.isDown)
+        {
+            this.x -= 2;
+        }
     }
 
 }
