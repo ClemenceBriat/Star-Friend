@@ -7,7 +7,7 @@ class Play extends Phaser.Scene{
         //load images and tile sprites
         this.load.image('player', './assets/Player-star.png');
         //this.load.image('spaceship', './assets/spaceship.png');
-        //this.load.image('starfield', './assets/starfield.png');
+        this.load.image('starfield', './assets/sky.png');
 
         // load spritesheet
         //this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -15,7 +15,7 @@ class Play extends Phaser.Scene{
 
     create() {
         //place tile sprite
-        //this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
 
         // white borders
         //this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -80,9 +80,27 @@ class Play extends Phaser.Scene{
         if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
             this.scene.start("menuScene");
         }
-        // scroll starfield
-        this.starfield.tilePositionX -= 4;
         */
+
+        // scroll starfield
+        if(keyDOWN.isDown)
+        {
+            this.starfield.tilePositionY += 4;
+        }
+        if(keyUP.isDown)
+        {
+            this.starfield.tilePositionY -= 4;
+        }
+        if(keyLEFT.isDown)
+        {
+            this.starfield.tilePositionX -= 4;
+        }
+        if(keyRIGHT.isDown)
+        {
+            this.starfield.tilePositionX += 4;
+        }
+
+        
 
         if (!this.gameOver) {
             //update rocket

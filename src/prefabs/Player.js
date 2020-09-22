@@ -14,6 +14,7 @@ class Player extends Phaser.GameObjects.Sprite {
 
     update() {
         //all direction movement
+        /*
         if(keyRIGHT.isDown) {
             this.x += 2;
         }
@@ -26,6 +27,7 @@ class Player extends Phaser.GameObjects.Sprite {
         if(keyDOWN.isDown) {
             this.y += 2;
         }
+        */
 
         /*
         // jump button
