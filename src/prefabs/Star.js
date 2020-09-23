@@ -34,8 +34,8 @@ class Star extends Phaser.GameObjects.Sprite {
     reset()
     {
         //New position values
-        this.x = Phaser.Math.Between(0, 540);
-        this.y = Phaser.Math.Between(0, 380);
+        this.x = Phaser.Math.Between(100, 1564);
+        this.y = Phaser.Math.Between(100, 1148);
 
     }
 
