@@ -117,57 +117,69 @@ class Play extends Phaser.Scene{
         }
 
         //check collisions
-        /*
-        if(this.checkCollision(this.player, this.ship03)) {
-            this.player.reset();
-            this.shipExplode(this.ship03);
+        if(this.checkCollision(this.player, this.star01)) {
+            this.star01.reset();
+            this.shipExplode(this.star01);
         }
-        if(this.checkCollision(this.player, this.ship02)) {
-            this.player.reset();
-            this.shipExplode(this.ship02);
+        if(this.checkCollision(this.player, this.star02)) {
+            this.star02.reset();
+            this.shipExplode(this.star02);
         }
-        if(this.checkCollision(this.player, this.ship01)) {
-            this.player.reset();
-            this.shipExplode(this.ship01);
+        if(this.checkCollision(this.player, this.star03)) {
+            this.star03.reset();
+            this.shipExplode(this.star03);
         }
-        */
+        if(this.checkCollision(this.player, this.star04)) {
+            this.star04.reset();
+            this.shipExplode(this.star04);
+        }
+
     }
 
-    checkCollision(rocket, ship) {
+    checkCollision(player, friend) {
         // simple AABB checking
-        /*
-        if(rocket.x < ship.x + ship.width &&
-            rocket.x + rocket.width > ship.x &&
-            rocket.y < ship.y + ship.height && 
-            rocket.height + rocket.y > ship.y) {
+        if(player.x < friend.x + friend.width &&
+            player.x + player.width > friend.x &&
+            player.y < friend.y + friend.height && 
+            player.height + player.y > friend.y) {
                 return true;
+                
             }
         else {
             return false;
         }
-        */
     }
 
-    shipExplode(ship) {
+    shipExplode(friend) {
         //temp hide ship
-        //ship.alpha = 0;
+        friend.alpha = 0;
+        
         // create explosion sprite at ship's position
         //let boom = this.add.sprite(ship.x, ship.y, 'explotion').setOrigin(0, 0);
+        
         //play explode anim
         //boom.anims.play('explode');
+        
         //callback after animation completes
         /*
         boom.on('animationcomplete', () => {
-            ship.reset();                       //reset ship position
-            ship.alpha = 1;                     //make ship visible again
-            boom.destroy();                     //remove explosion sprite
+            friend.reset();                       //reset ship position
+            friend.alpha = 1;                     //make ship visible again
+            //boom.destroy();                     //remove explosion sprite
         });
+        */
+
+
+
+        //reseting without animation
+        friend.reset();
+        friend.alpha = 1;
+
         //score increment and repaint
-        this.player += ship.points;
-        this.scoreLeft.text = this.p1Score;
+        //this.p1Score += friend.points;
+        //this.scoreLeft.text = this.p1Score;
 
         //sound plays
-        this.sound.play('sfx_explosion');
-        */
+        //this.sound.play('sfx_explosion');
     }
 }
