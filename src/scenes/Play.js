@@ -30,8 +30,9 @@ class Play extends Phaser.Scene{
 
         //add stars
         this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
-        //this.ship02 = new Spaceship(this, game.config.width +96, 196, 'spaceship', 0, 20).setOrigin (0, 0);
-        //this.ship03 = new Spaceship(this, game.config.width, 260, 'spaceship', 0, 10).setOrigin (0, 0);
+        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
+        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
+        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -85,19 +86,19 @@ class Play extends Phaser.Scene{
         // scroll starfield
         if(keyDOWN.isDown)
         {
-            this.starfield.tilePositionY += 4;
+            this.starfield.tilePositionY += 2;
         }
         if(keyUP.isDown)
         {
-            this.starfield.tilePositionY -= 4;
+            this.starfield.tilePositionY -= 2;
         }
         if(keyLEFT.isDown)
         {
-            this.starfield.tilePositionX -= 4;
+            this.starfield.tilePositionX -= 2;
         }
         if(keyRIGHT.isDown)
         {
-            this.starfield.tilePositionX += 4;
+            this.starfield.tilePositionX += 2;
         }
 
         //scroll stars
@@ -108,10 +109,11 @@ class Play extends Phaser.Scene{
             //update rocket
             this.player.update();
 
-            //update spaceship
+            //update stars
             this.star01.update();
-            //this.ship02.update();
-            //this.ship03.update();
+            this.star02.update();
+            this.star03.update();
+            this.star04.update();
         }
 
         //check collisions
