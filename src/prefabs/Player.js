@@ -28,22 +28,6 @@ class Player extends Phaser.GameObjects.Sprite {
         }
         */
 
-        /*
-        // jump button
-        if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.isJumping = true;
-            //play sfx
-            //this.sfxJump.play();
-        }
-        */
-    
-        /*
-        //if jumping, move up
-        if(this.isJumping && this.y >= 108) {
-            //idk
-        }
-        */
-
     }
 
 }

@@ -29,10 +29,10 @@ class Play extends Phaser.Scene{
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
 
         //add stars
-        this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend').setOrigin (0, 0);
-        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend').setOrigin (0, 0);
-        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend').setOrigin (0, 0);
-        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend').setOrigin (0, 0);
+        this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
+        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
+        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend', 0, 1).setOrigin (0, 0);
+        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend', 0, 1).setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -49,10 +49,9 @@ class Play extends Phaser.Scene{
         */
 
         //score
-        //this.player = 0;
+        this.friendCount = 0;
 
         //score display
-        /*
         let scoreConfig = {
             fontFamily: 'Courier',
             fontSize: '28px',
@@ -65,8 +64,7 @@ class Play extends Phaser.Scene{
             },
             fixedWidth: 100
         }
-        this.scoreLeft = this.add.text(69, 54, this.p1Score, scoreConfig);
-        */
+        this.scoreLeft = this.add.text(69, 54, this.friendCount, scoreConfig);
 
         //game over flag
         //this.gameOver = false;
@@ -100,14 +98,12 @@ class Play extends Phaser.Scene{
         {
             this.starfield.tilePositionX += 2;
         }
-
-        //scroll stars
-        
-        
-
+                
+        //update all characters
         if (!this.gameOver) {
+
             //update rocket
-            this.player.update();
+            //this.player.update();
 
             //update stars
             this.star01.update();
@@ -169,15 +165,13 @@ class Play extends Phaser.Scene{
         });
         */
 
-
-
         //reseting without animation
         friend.reset();
         friend.alpha = 1;
 
         //score increment and repaint
-        //this.p1Score += friend.points;
-        //this.scoreLeft.text = this.p1Score;
+        this.friendCount += friend.points;
+        this.scoreLeft.text = this.friendCount;
 
         //sound plays
         //this.sound.play('sfx_explosion');
