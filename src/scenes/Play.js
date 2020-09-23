@@ -15,7 +15,7 @@ class Play extends Phaser.Scene{
 
     create() {
         //place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 640, 480, 'starfield').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, 832, 624, 'starfield').setOrigin(0, 0);
 
         // white borders
         //this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
@@ -26,13 +26,13 @@ class Play extends Phaser.Scene{
         //this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
 
         // add rocket for p1
-        this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setScale(0.7, 0.7).setOrigin(0, 0);
+        this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
 
         //add stars
-        this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
-        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
-        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
-        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend').setScale(0.7, 0.7).setOrigin (0, 0);
+        this.star01 = new Star(this, game.config.width/2 + 100, game.config.height/2, 'friend').setOrigin (0, 0);
+        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend').setOrigin (0, 0);
+        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend').setOrigin (0, 0);
+        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend').setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
