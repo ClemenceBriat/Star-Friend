@@ -16,17 +16,18 @@ class Player extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        //all direction movement
-        if(keyRIGHT.isDown && this.xPosition >= 1248 && this.xPosition <= 1604) {
+
+        //directional movement
+        if(keyRIGHT.isDown && this.x <= 1604) {
             this.x += 4;
         }
-        if(keyLEFT.isDown && this.xPosition >= 0 && this.xPosition <= game.config.width/2) {
+        if(keyLEFT.isDown && this.x >= 0) {
             this.x -= 4;
         }
-        if(keyUP.isDown && this.yPosition >= 0 && this.yPosition <= game.config.height/2) {
+        if(keyUP.isDown && this.y >= 0) {
             this.y -= 4;
         }
-        if(keyDOWN.isDown && this.yPosition >= 936 && this.yPosition <= 1188) {
+        if(keyDOWN.isDown && this.y <= 1188) {
             this.y += 4;
         }
 
