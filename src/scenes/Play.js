@@ -8,6 +8,7 @@ class Play extends Phaser.Scene{
         this.load.image('player', './assets/Player-star.png');
         this.load.image('friend', './assets/friend.png');
         this.load.image('starfield', './assets/sky.png');
+        this.load.image('satellite', './assets/satellite_01.png');
 
         // load spritesheet
         //this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -33,6 +34,9 @@ class Play extends Phaser.Scene{
         this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
         this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend', 0, 1).setOrigin (0, 0);
         this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend', 0, 1).setOrigin (0, 0);
+
+        //add satellites
+        this.satellite01 = new Satellite(this, game.config.width/2 +300, game.config.height/2, 'satellite', 0).setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
