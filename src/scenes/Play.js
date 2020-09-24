@@ -63,9 +63,7 @@ class Play extends Phaser.Scene{
         //score display
         let scoreConfig = {
             fontFamily: 'Courier',
-            fontSize: '28px',
-            backgroundColor: '#F3B141', 
-            color: '#843605',
+            fontSize: '28px', 
             align: 'right',
             padding: {
                 top: 5, 
@@ -73,7 +71,9 @@ class Play extends Phaser.Scene{
             },
             fixedWidth: 100
         }
+
         this.scoreLeft = this.add.text(69, 54, this.friendCount, scoreConfig);
+        this.scoreLeft.setScrollFactor(0, 0);
 
         //game over flag
         //this.gameOver = false;
@@ -95,7 +95,7 @@ class Play extends Phaser.Scene{
 
             //update player
             this.player.update();
-            
+
         }
 
         //check collisions
