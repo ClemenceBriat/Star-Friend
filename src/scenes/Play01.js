@@ -1,6 +1,6 @@
-class Play extends Phaser.Scene{
+class Play01 extends Phaser.Scene{
     constructor() {
-        super("playScene");
+        super("play01Scene");
     }
 
     preload() {
@@ -57,6 +57,7 @@ class Play extends Phaser.Scene{
         keyLEFT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //camera
         // bounds of the background asset 
@@ -93,28 +94,26 @@ class Play extends Phaser.Scene{
         this.scoreLeft = this.add.text(69, 54, this.friendCount, scoreConfig);
         this.scoreLeft.setScrollFactor(0, 0);
 
-        //game over flag
-        //this.gameOver = false;
+        //gnext level flag
+        this.nextLevel = false;
     }
 
     update() {
         //chekc key input for restart
-        /*
-        if( this.gameOver && Phaser.Input.Keyboard.JustDown(keyF)) {
-            this.scene.restand(this.p1Score);
+        if(this.nextLevel && Phaser.Input.Keyboard.JustDown(keySPACE)) {
+            this.scene.start("play02Scene");
         }
-        if(this.gameOver && Phaser.Input.Keyboard.JustDown(keyLEFT)) {
-            this.scene.start("menuScene");
+
+        //check progress status
+        if(this.friendCount >= 30)
+        {
+            this.nextLevel = true;
         }
-        */
                 
         //update all characters
-        if (!this.gameOver) {
-
-            //update player
-            this.player.update();
-
-        }
+        
+        //update player
+        this.player.update();
 
         //check collisions with star friends
         if(this.checkCollision(this.player, this.star01)) {

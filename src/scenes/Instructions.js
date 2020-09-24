@@ -5,7 +5,7 @@ class Instructions extends Phaser.Scene{
 
     create() {
         // starts next scene
-        this.scene.start("playScene");
+        this.scene.start("play01Scene");
 
         //menu display
         let menuConfig = {
@@ -39,7 +39,7 @@ class Instructions extends Phaser.Scene{
 
     update() {
         if(Phaser.Input.Keyboard.JustDown(keySPACE)) {
-            this.scene.start("playScene");
+            this.scene.start("play01Scene");
         }
     }
 
