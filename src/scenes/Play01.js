@@ -94,7 +94,7 @@ class Play01 extends Phaser.Scene{
         this.scoreLeft = this.add.text(69, 54, this.friendCount, scoreConfig);
         this.scoreLeft.setScrollFactor(0, 0);
 
-        //gnext level flag
+        //next level flag
         this.nextLevel = false;
     }
 
@@ -105,7 +105,7 @@ class Play01 extends Phaser.Scene{
         }
 
         //check progress status
-        if(this.friendCount >= 30)
+        if(this.friendCount >= 1)
         {
             this.nextLevel = true;
         }
