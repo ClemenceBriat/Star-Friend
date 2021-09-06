@@ -6,3 +6,5 @@ The goal is a simple and friendly game that revolves around a star making friend
 Searching across the universe for a wide variety of friends, there are both incredible and dangerous things to find, so this adventure is going to be a relaxing thrill.
 
 This is still a work in progress, but I have many ideas for this game.
+
+https://clemencebriat.github.io/Star-Friend/
