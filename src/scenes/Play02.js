@@ -23,29 +23,27 @@ class Play02 extends Phaser.Scene{
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
 
         //add stars
-        /*
-        this.planet01 = new Planet(this, game.config.width/2 +100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
-        this.planet02 = new Planet(this, game.config.width/2 - 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
-        this.planet03 = new Planet(this, game.config.width/2, game.config.height/2 + 100, 'friend', 0, 1).setOrigin (0, 0);
-        this.planet04 = new Planet(this, game.config.width/2, game.config.height/2 - 100, 'friend', 0, 1).setOrigin (0, 0);
-        */
+        this.star01 = new Star(this, game.config.width/2 +100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
+        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
+        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend', 0, 1).setOrigin (0, 0);
+        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend', 0, 1).setOrigin (0, 0);
 
-        //add satellites  //check dimensions
+        //add satellites
         let randomX = Phaser.Math.Between(0, 1514);
         let randomY = Phaser.Math.Between(0, 1098);
-        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -55,8 +53,8 @@ class Play02 extends Phaser.Scene{
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
 
         //camera
-        // bounds of the background asset       //check dimensions
-        this.cameras.main.setBounds(0, 0, 2496, 1872);
+        // bounds of the background asset 
+        this.cameras.main.setBounds(0, 0, 1664, 1248);
         // bounds of the canvas 
         this.cameras.main.setViewport(0, 0, 832, 624);
         // this follows the player & zoomed in 
@@ -85,10 +83,20 @@ class Play02 extends Phaser.Scene{
     }
 
     update() {
+
+        //satellite movement
+        this.satellite01.update();
+        this.satellite02.update();
+        this.satellite03.update();
+        this.satellite04.update();
+        this.satellite05.update();
+        
         //chekc key input for restart
+        /*
         if(this.nextLevel && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.start("play02Scene");
         }
+        */
 
         //check progress status
         if(this.friendCount >= 30)
@@ -102,7 +110,6 @@ class Play02 extends Phaser.Scene{
         this.player.update();
 
         //check collisions with star friends
-        /*
         if(this.checkCollision(this.player, this.star01)) {
             this.star01.reset();
             this.shipExplode(this.star01);
@@ -119,7 +126,6 @@ class Play02 extends Phaser.Scene{
             this.star04.reset();
             this.shipExplode(this.star04);
         }
-        */
 
         //check collision with satellites
         if(this.checkCollision(this.player, this.satellite01)) {
