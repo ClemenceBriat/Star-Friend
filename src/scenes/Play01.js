@@ -38,19 +38,19 @@ class Play01 extends Phaser.Scene{
         //add satellites
         let randomX = Phaser.Math.Between(0, 1514);
         let randomY = Phaser.Math.Between(0, 1098);
-        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
         randomX = Phaser.Math.Between(0, 1514);
         randomY = Phaser.Math.Between(0, 1098);
-        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0).setOrigin (0, 0);
+        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0, 0);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);

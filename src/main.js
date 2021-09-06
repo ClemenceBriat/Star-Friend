@@ -13,8 +13,10 @@ let game = new Phaser.Game(config);
 //define game settings
 
 game.settings = {
-    //friendCount = 0
-    satelliteSpeed: 1
+    friendCount: 1,
+    satelliteSpeed1: 1,
+    satelliteSpeed2: 2,
+    satelliteSpeed3: 3
 }
 
 
