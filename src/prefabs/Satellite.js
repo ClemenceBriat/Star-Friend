@@ -11,7 +11,12 @@ class Satellite extends Phaser.GameObjects.Sprite {
     }
 
     update() {
-        
+        // move satellite down
+        this.y -= game.settings.satelliteSpeed;
+        // wraparound screen bounds
+        if(this.y <= 0 - this.width) {
+            this.reset();
+        }
     }
 
     reset()

@@ -11,11 +11,12 @@ let game = new Phaser.Game(config);
 
 
 //define game settings
-/*
+
 game.settings = {
-    friendCount = 0
+    //friendCount = 0
+    satelliteSpeed: 1
 }
-*/
+
 
 // reserve keyboard variables
 let keySPACE, keyLEFT, keyRIGHT, keyUP, keyDOWN;

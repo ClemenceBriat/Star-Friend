@@ -99,6 +99,15 @@ class Play01 extends Phaser.Scene{
     }
 
     update() {
+
+        //satellite movement
+        this.satellite01.update();
+        this.satellite02.update();
+        this.satellite03.update();
+        this.satellite04.update();
+        this.satellite05.update();
+
+
         //chekc key input for restart
         if(this.nextLevel && Phaser.Input.Keyboard.JustDown(keySPACE)) {
             this.scene.start("play02Scene");
