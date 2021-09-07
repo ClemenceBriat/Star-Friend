@@ -12,10 +12,17 @@ class Satellite extends Phaser.GameObjects.Sprite {
     }
 
     update() {
+
+        //satellite turn
+        this.angle += this.speed;
+
         // move satellite down
         this.y -= this.speed;
         // wraparound screen bounds
-        if(this.y <= 0 - this.width) {
+        if(this.y <= 0 - 75) {
+            this.reset();
+        }
+        if(this.y >= 1248 + 75) {
             this.reset();
         }
     }
@@ -25,7 +32,11 @@ class Satellite extends Phaser.GameObjects.Sprite {
         //New position values
         this.x = Phaser.Math.Between(100, 1564);
         this.y = Phaser.Math.Between(100, 1148);
-        this.speed = Phaser.Math.Between(1, 4);
+        this.speed = Phaser.Math.Between(-4, 4);
+        if(this.speed == 0)
+        {
+            this.speed = 1;
+        }
     }
 
 }
