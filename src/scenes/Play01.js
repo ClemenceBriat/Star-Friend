@@ -34,17 +34,13 @@ class Play01 extends Phaser.Scene{
         let randomX = Phaser.Math.Between(0, 1514);
         let randomY = Phaser.Math.Between(0, 1098);
         this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
-        randomX = Phaser.Math.Between(0, 1514);
-        randomY = Phaser.Math.Between(0, 1098);
+        this.randomizeCoordinates(randomX, randomX);
         this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
-        randomX = Phaser.Math.Between(0, 1514);
-        randomY = Phaser.Math.Between(0, 1098);
+        this.randomizeCoordinates(randomX, randomX);
         this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
-        randomX = Phaser.Math.Between(0, 1514);
-        randomY = Phaser.Math.Between(0, 1098);
+        this.randomizeCoordinates(randomX, randomX);
         this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
-        randomX = Phaser.Math.Between(0, 1514);
-        randomY = Phaser.Math.Between(0, 1098);
+        this.randomizeCoordinates(randomX, randomX);
         this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
 
         // define keyboard keys
@@ -92,8 +88,6 @@ class Play01 extends Phaser.Scene{
         //next level flag
         this.nextLevel = false;
 
-        console.log(this.player.x);
-        console.log(game.config.width/2)
     }
 
     update() {
@@ -178,6 +172,11 @@ class Play01 extends Phaser.Scene{
 
     }
 
+    randomizeCoordinates(x, y){
+        x = Phaser.Math.Between(0, 1514);
+        y = Phaser.Math.Between(0, 1098);
+    }
+
     checkCollision(player, friend) {
         // simple AABB checking
         if(player.x < friend.x + friend.width &&
@@ -237,4 +236,5 @@ class Play01 extends Phaser.Scene{
             player.y += 4;
         }
     }
+
 }
