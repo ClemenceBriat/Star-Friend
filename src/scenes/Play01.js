@@ -3,6 +3,9 @@ class Play01 extends Phaser.Scene{
         super("play01Scene");
     }
 
+    fieldWidth = 1664;
+    fieldHeight = 1248;
+
     preload() {
         //load images and tile sprites
         this.load.image('player', './assets/Player-star.png');
@@ -17,8 +20,8 @@ class Play01 extends Phaser.Scene{
 
     create() {
         //place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, 1664, 1248, 'starfield').setOrigin(0, 0);
-        this.front_stars = this.add.tileSprite(0, 0, 1664, 1248, 'front_stars').setOrigin(0, 0);
+        this.starfield = this.add.tileSprite(0, 0, fieldWidth, fieldHeight, 'starfield').setOrigin(0, 0);
+        this.front_stars = this.add.tileSprite(0, 0, fieldWidth, fieldHeight, 'front_stars').setOrigin(0, 0);
 
 
         // add rocket for p1
