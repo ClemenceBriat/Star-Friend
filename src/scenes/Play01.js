@@ -8,6 +8,7 @@ class Play01 extends Phaser.Scene{
         this.load.image('player', './assets/Player-star.png');
         this.load.image('friend', './assets/friend.png');
         this.load.image('starfield', './assets/sky.png');
+        this.load.image('front_stars', './assets/sky front.png');
         this.load.image('satellite', './assets/satellite_01.png');
 
         // load spritesheet
@@ -17,14 +18,8 @@ class Play01 extends Phaser.Scene{
     create() {
         //place tile sprite
         this.starfield = this.add.tileSprite(0, 0, 1664, 1248, 'starfield').setOrigin(0, 0);
+        this.front_stars = this.add.tileSprite(0, 0, 1664, 1248, 'front_stars').setOrigin(0, 0);
 
-        // white borders
-        //this.add.rectangle(5, 5, 630, 32, 0xFFFFFF).setOrigin(0, 0);
-        //this.add.rectangle(5, 443, 630, 32, 0xFFFFFF).setOrigin(0, 0);
-        //this.add.rectangle(5, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
-        //this.add.rectangle(603, 5, 32, 455, 0xFFFFFF).setOrigin(0, 0);
-        // green ui background
-        //this.add.rectangle(37, 42, 566, 64, 0x00FF00).setOrigin(0, 0);
 
         // add rocket for p1
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
@@ -96,9 +91,31 @@ class Play01 extends Phaser.Scene{
 
         //next level flag
         this.nextLevel = false;
+
+        console.log(this.player.x);
+        console.log(game.config.width/2)
     }
 
     update() {
+
+        //parallax scrolling
+
+        if ((this.player.x <= 1604 - game.config.width/2) && (this.player.x >= 0 + game.config.width/2)){
+            if(keyRIGHT.isDown){
+                this.front_stars.tilePositionX += 4;
+            }
+            else if(keyLEFT.isDown){
+                this.front_stars.tilePositionX -= 4;
+            }
+        }
+        if ((this.player.y <= 1188 - game.config.height/2) && (this.player.y >= 0 + game.config.height/2)){
+            if(keyDOWN.isDown){
+                this.front_stars.tilePositionY += 4;
+            }
+            else if(keyUP.isDown){
+                this.front_stars.tilePositionY -= 4;
+            }
+        }
 
         //satellite movement
         this.satellite01.update();
