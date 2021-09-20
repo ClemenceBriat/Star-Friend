@@ -3,6 +3,7 @@ class Play01 extends Phaser.Scene{
         super("play01Scene");
     }
 
+    // dimensions of the field
     fieldWidth = 1664;
     fieldHeight = 1248;
 
@@ -20,31 +21,31 @@ class Play01 extends Phaser.Scene{
 
     create() {
         //place tile sprite
-        this.starfield = this.add.tileSprite(0, 0, fieldWidth, fieldHeight, 'starfield').setOrigin(0, 0);
-        this.front_stars = this.add.tileSprite(0, 0, fieldWidth, fieldHeight, 'front_stars').setOrigin(0, 0);
-
+        this.starfield = this.add.tileSprite(0, 0, this.fieldWidth, this.fieldHeight, 'starfield').setOrigin(0, 0);
+        this.front_stars = this.add.tileSprite(0, 0, this.fieldWidth, this.fieldHeight, 'front_stars').setOrigin(0, 0);
 
         // add rocket for p1
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
 
         //add stars
-        this.star01 = new Star(this, game.config.width/2 +100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
-        this.star02 = new Star(this, game.config.width/2 - 100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
-        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + 100, 'friend', 0, 1).setOrigin (0, 0);
-        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - 100, 'friend', 0, 1).setOrigin (0, 0);
+        var offset = 100;
+        this.star01 = new Star(this, game.config.width/2 + offset, game.config.height/2, 'friend', 0, 1).setOrigin(0, 0);
+        this.star02 = new Star(this, game.config.width/2 - offset, game.config.height/2, 'friend', 0, 1).setOrigin(0, 0);
+        this.star03 = new Star(this, game.config.width/2, game.config.height/2 + offset, 'friend', 0, 1).setOrigin(0, 0);
+        this.star04 = new Star(this, game.config.width/2, game.config.height/2 - offset, 'friend', 0, 1).setOrigin(0, 0);
 
         //add satellites
-        let randomX = Phaser.Math.Between(0, 1514);
-        let randomY = Phaser.Math.Between(0, 1098);
-        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
+        let randomX = Phaser.Math.Between(0, this.fieldWidth);
+        let randomY = Phaser.Math.Between(0, this.fieldHeight);
+        this.satellite01 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin(0.5, 0.5);
         this.randomizeCoordinates(randomX, randomX);
-        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
+        this.satellite02 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin(0.5, 0.5);
         this.randomizeCoordinates(randomX, randomX);
-        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
+        this.satellite03 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin(0.5, 0.5);
         this.randomizeCoordinates(randomX, randomX);
-        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
+        this.satellite04 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin(0.5, 0.5);
         this.randomizeCoordinates(randomX, randomX);
-        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin (0.5, 0.5);
+        this.satellite05 = new Satellite(this, randomX, randomY, 'satellite', 0, 1).setOrigin(0.5, 0.5);
 
         // define keyboard keys
         keyRIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
@@ -55,9 +56,9 @@ class Play01 extends Phaser.Scene{
 
         //camera
         // bounds of the background asset 
-        this.cameras.main.setBounds(0, 0, 1664, 1248);
+        this.cameras.main.setBounds(0, 0, this.fieldWidth, this.fieldHeight);
         // bounds of the canvas 
-        this.cameras.main.setViewport(0, 0, 832, 624);
+        this.cameras.main.setViewport(0, 0, game.config.width, game.config.height);
         // this follows the player & zoomed in 
         this.cameras.main.startFollow(this.player);
 
@@ -97,19 +98,19 @@ class Play01 extends Phaser.Scene{
 
         //parallax scrolling
 
-        if ((this.player.x <= 1604 - game.config.width/2) && (this.player.x >= 0 + game.config.width/2)){
-            if(keyRIGHT.isDown){
+        if ((this.player.x <= this.fieldWidth - this.player.displayWidth - game.config.width/2) && (this.player.x >= 0 + game.config.width/2)){
+            if (keyRIGHT.isDown){
                 this.front_stars.tilePositionX += 4;
             }
-            else if(keyLEFT.isDown){
+            else if (keyLEFT.isDown){
                 this.front_stars.tilePositionX -= 4;
             }
         }
-        if ((this.player.y <= 1188 - game.config.height/2) && (this.player.y >= 0 + game.config.height/2)){
-            if(keyDOWN.isDown){
+        if ((this.player.y <= this.fieldHeight - this.player.displayHeight - game.config.height/2) && (this.player.y >= 0 + game.config.height/2)){
+            if (keyDOWN.isDown){
                 this.front_stars.tilePositionY += 4;
             }
-            else if(keyUP.isDown){
+            else if (keyUP.isDown){
                 this.front_stars.tilePositionY -= 4;
             }
         }
@@ -175,9 +176,9 @@ class Play01 extends Phaser.Scene{
 
     }
 
-    randomizeCoordinates(x, y){
-        x = Phaser.Math.Between(0, 1514);
-        y = Phaser.Math.Between(0, 1098);
+    randomizeCoordinates(x, y) {
+        x = Phaser.Math.Between(0, this.fieldWidth - this.satellite01.displayWidth);
+        y = Phaser.Math.Between(0, this.fieldHeight - this.satellite01.displayHeight);
     }
 
     checkCollision(player, friend) {
@@ -187,7 +188,6 @@ class Play01 extends Phaser.Scene{
             player.y < friend.y + friend.height && 
             player.height + player.y > friend.y) {
                 return true;
-                
             }
         else {
             return false;
