@@ -10,6 +10,8 @@ class Play01 extends Phaser.Scene{
         this.load.image('starfield', './assets/sky.png');
         this.load.image('front_stars', './assets/sky front.png');
         this.load.image('satellite', './assets/satellite_01.png');
+        this.load.image('bullet', './assets/bullet.png');
+        this.load.image('heart', './assets/heart.png');
 
         // load spritesheet
         //this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
@@ -23,6 +25,19 @@ class Play01 extends Phaser.Scene{
 
         // add rocket for p1
         this.player = new Player(this, game.config.width/2, game.config.height/2, 'player').setOrigin(0, 0);
+
+        //add hearts
+
+        let heartSpacer = 10;
+
+        this.heart03 = new Heart(this, heartSpacer, heartSpacer, 'heart', 0).setOrigin (0, 0);
+        this.heart02 = new Heart(this, 70, heartSpacer, 'heart', 0).setOrigin (0, 0);
+        this.heart01 = new Heart(this, 130, heartSpacer, 'heart', 0).setOrigin (0, 0);
+        this.heart01.setScrollFactor(0, 0);
+        this.heart02.setScrollFactor(0, 0);
+        this.heart03.setScrollFactor(0, 0);
+
+        this.heartAffected = this.heart01;
 
         //add stars
         this.star01 = new Star(this, game.config.width/2 +100, game.config.height/2, 'friend', 0, 1).setOrigin (0, 0);
@@ -67,8 +82,10 @@ class Play01 extends Phaser.Scene{
         });
         */
 
-        //score
+        //score and life
         this.friendCount = 0;
+        this.heartCount = 3;
+
 
         //score display
         let scoreConfig = {
@@ -93,6 +110,7 @@ class Play01 extends Phaser.Scene{
     update() {
 
         //parallax scrolling
+
 
         if ((this.player.x <= 1604 - game.config.width/2) && (this.player.x >= 0 + game.config.width/2)){
             if(keyRIGHT.isDown){
@@ -138,36 +156,47 @@ class Play01 extends Phaser.Scene{
         //check collisions with star friends
         if(this.checkCollision(this.player, this.star01)) {
             this.star01.reset();
-            this.shipExplode(this.star01);
+            this.collectFriend(this.star01);
         }
         if(this.checkCollision(this.player, this.star02)) {
             this.star02.reset();
-            this.shipExplode(this.star02);
+            this.collectFriend(this.star02);
         }
         if(this.checkCollision(this.player, this.star03)) {
             this.star03.reset();
-            this.shipExplode(this.star03);
+            this.collectFriend(this.star03);
         }
         if(this.checkCollision(this.player, this.star04)) {
             this.star04.reset();
-            this.shipExplode(this.star04);
+            this.collectFriend(this.star04);
         }
+
 
         //check collision with satellites
         if(this.checkCollision(this.player, this.satellite01)) {
            this.stopMoving(this.player, this.satellite01);
+           this.satelliteExplode(this.satellite01);
+           this.heartLoss(this.heartAffected);
         }
         if(this.checkCollision(this.player, this.satellite02)) {
             this.stopMoving(this.player, this.satellite02);
+            this.satelliteExplode(this.satellite02);
+            this.heartLoss(this.heartAffected);
         }
         if(this.checkCollision(this.player, this.satellite03)) {
             this.stopMoving(this.player, this.satellite03);
+            this.satelliteExplode(this.satellite03);
+            this.heartLoss(this.heartAffected);
         }
         if(this.checkCollision(this.player, this.satellite04)) {
             this.stopMoving(this.player, this.satellite04);
+            this.satelliteExplode(this.satellite04);
+            this.heartLoss(this.heartAffected);
         }
         if(this.checkCollision(this.player, this.satellite05)) {
             this.stopMoving(this.player, this.satellite05);
+            this.satelliteExplode(this.satellite05);
+            this.heartLoss(this.heartAffected);
         }
 
     }
@@ -191,7 +220,30 @@ class Play01 extends Phaser.Scene{
         }
     }
 
-    shipExplode(friend) {
+    heartLoss(heart){
+
+        //heart dissapears
+        heart.alpha = 0;
+
+        //life meter goes down
+        this.heartCount -= 1;
+
+        if(this.heartCount == 2){
+            this.heartAffected = this.heart02;
+        }
+        else if (this.heartCount == 1){
+            this.heartAffected = this.heart03;
+        }
+        
+    }
+
+    satelliteExplode(satellite){
+        satellite.alpha = 0;
+        satellite.reset();
+        satellite.alpha = 1;
+    }
+
+    collectFriend(friend) {
         //temp hide ship
         friend.alpha = 0;
         
