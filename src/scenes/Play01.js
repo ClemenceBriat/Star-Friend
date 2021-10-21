@@ -13,6 +13,12 @@ class Play01 extends Phaser.Scene{
         this.load.image('bullet', './assets/bullet.png');
         this.load.image('heart', './assets/heart.png');
 
+        //bullet group
+        this.bullets = this.physics.add.group({
+            defaultKey: 'bullet',
+            maxSize: 100
+        });
+
         // load spritesheet
         //this.load.spritesheet('explosion', './assets/explosion.png', {frameWidth: 64, frameHeight: 32, startFrame: 0, endFrame: 9});
     }
@@ -28,7 +34,7 @@ class Play01 extends Phaser.Scene{
 
         //add hearts
 
-        let heartSpacer = 10;
+        const heartSpacer = 10;
 
         this.heart03 = new Heart(this, heartSpacer, heartSpacer, 'heart', 0).setOrigin (0, 0);
         this.heart02 = new Heart(this, 70, heartSpacer, 'heart', 0).setOrigin (0, 0);
@@ -64,6 +70,10 @@ class Play01 extends Phaser.Scene{
         keyUP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.W);
         keyDOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
         keySPACE = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE);
+        keyRightArrow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+        keyLeftArrow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.LEFT);
+        keyUpArrow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+        keyDownArrow = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
 
         //camera
         // bounds of the background asset 
@@ -105,13 +115,14 @@ class Play01 extends Phaser.Scene{
         //next level flag
         this.nextLevel = false;
 
+        //shooting or not shooting
+        this.shooting = false;
+
     }
 
     update() {
 
         //parallax scrolling
-
-
         if ((this.player.x <= 1604 - game.config.width/2) && (this.player.x >= 0 + game.config.width/2)){
             if(keyRIGHT.isDown){
                 this.front_stars.tilePositionX += 4;
@@ -135,6 +146,32 @@ class Play01 extends Phaser.Scene{
         this.satellite03.update();
         this.satellite04.update();
         this.satellite05.update();
+
+        //projectile commands
+        //keyRightArrow.on('down', this.shoot());
+        if(keyRightArrow.isDown || keyLeftArrow.isDown || keyUpArrow.isDown || keyDownArrow.isDown)
+        {
+            if(this.shooting == false){
+                if(keyRightArrow.isDown) {
+                    this.shoot('right');
+                }
+                 else if(keyLeftArrow.isDown) {
+                    this.shoot('left');
+                }
+                else if(keyUpArrow.isDown) {
+                    this.shoot('up');
+                }
+                else if(keyDownArrow.isDown) {
+                    this.shoot('down');
+                }
+                this.shooting = true;
+            }
+            //this.shoot();
+        }
+        else {
+            this.shooting = false;
+        }
+        
 
 
         //chekc key input for restart
@@ -199,6 +236,27 @@ class Play01 extends Phaser.Scene{
             this.heartLoss(this.heartAffected);
         }
 
+    }
+
+    //shooting bullets
+    shoot(direction) {
+        var bullet = this.bullets.get(this.player.x + 0.5 * (this.player.height), this.player.y + 0.5 * (this.player.width));
+        if (bullet) {
+            bullet.setActive(true);
+            bullet.setVisible(true);
+            if(direction == 'right'){
+                bullet.body.velocity.x = 600;
+            }
+            else if(direction == 'left'){
+                bullet.body.velocity.x = -600;
+            }
+            else if(direction == 'up'){
+                bullet.body.velocity.y = -600;
+            }
+            else if(direction == 'down'){
+                bullet.body.velocity.y = 600;
+            }
+        }
     }
 
     randomizeCoordinates(x, y){

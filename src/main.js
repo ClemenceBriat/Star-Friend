@@ -1,8 +1,17 @@
+// not sure
+var physicsConfig = {
+    default: 'arcade',
+    arcade: {
+        //debug: true
+    }
+}
+
 //Game window config
 let config = {
     type: Phaser.CANVAS, 
     width: 832, //832  1280  640
     height: 624, //624  960   480
+    physics: physicsConfig,
     scene: [Menu, Instructions, Play01, Play02],
 }
 
@@ -19,4 +28,4 @@ game.settings = {
 
 
 // reserve keyboard variables
-let keySPACE, keyLEFT, keyRIGHT, keyUP, keyDOWN;
+let keySPACE, keyLEFT, keyRIGHT, keyUP, keyDOWN, keyLeftArrow, keyRightArrow, keyDownArrow, keyUpArrow;
